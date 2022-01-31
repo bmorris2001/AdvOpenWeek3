@@ -49,9 +49,13 @@ app.post('/saveEmpEntry', (req,res)=>{
 
 
 app.post('/updateEmpEntry', (req,res)=>{
-    //console.log("Employee update " + req.body._id + " " + req.body.EmpFName+ " " +req.body.EmpLName)
-    Emp.findByIdAndUpdate(req.body._id).exec()
-    return res.redirect('/view.html');
+   
+    
+    Emp.updateOne(req.body.EmpFName,req.body.EmpLName,req.body.empDep,req.body.empStart,req.body.empTitle,req.body.empSal, function(err, res) {
+        if (err) throw err;
+        console.log("1 document updated");
+        db.close();
+      });
 })
 
 

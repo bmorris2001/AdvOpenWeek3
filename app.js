@@ -41,9 +41,9 @@ app.post('/saveEmpEntry', (req,res)=>{
  })
 
  app.post('/deleteEmp', (req,res)=>{
-    console.log("Employee deleted " + req.body._id + " " + req.body.EmpFName+ " " +req.body.EmpLName)
+    console.log("Employee deleted " + req.body._id)
     Empl.findByIdAndDelete(req.body._id).exec()
-    return res.redirect('/delete.html');
+    
     
 })
 
@@ -51,7 +51,7 @@ app.post('/saveEmpEntry', (req,res)=>{
 app.post('/updateEmpEntry', (req,res)=>{
    
     
-    Emp.updateOne(req.body.EmpFName,req.body.EmpLName,req.body.empDep,req.body.empStart,req.body.empTitle,req.body.empSal, function(err, res) {
+    Empl.updateOne(req.body.firstname, function(err, res) {
         if (err) throw err;
         console.log("1 document updated");
         db.close();

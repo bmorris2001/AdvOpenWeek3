@@ -3,27 +3,27 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const EmpSchema = new Schema({
-    EmpFName:{
+    firstName:{
         type:String,
         required:true
     },
-    EmpLName:{
+    lastName:{
         type:String,
         required:true
     },
-    empDep:{
+    departement:{
         type:String,
         required:true
     },
-    empStart:{
+    startDate:{
         type:Date,
         required:true
     },
-    empTitle:{
+    jobTitle:{
         type:String,
         required:true
     },
-    empSal:{
+    salary:{
         type:Number,
         required:true
     }

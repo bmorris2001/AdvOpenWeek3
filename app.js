@@ -19,30 +19,30 @@ mongoose.connect('mongodb://localhost:27017/Week3Lab',{
     console.log(err)
 })
 
-require('./models/Emp')
+require('./models/Empl')
 
-var Emp = mongoose.model('emp')
+var Empl = mongoose.model('emp')
 
 
 app.post('/saveEmpEntry', (req,res)=>{
     console.log(req.body)
 
     //create new entry for Emp
-    new Emp(req.body).save().then(()=>{
+    new Empl(req.body).save().then(()=>{
         console.log("Data Saved")
         res.redirect("view.html")
     })
 })
 
  app.get('/getData', (req,res)=>{
-     Emp.find().then((emp)=>{
+     Empl.find().then((emp)=>{
          res.json({emp})
      })
  })
 
  app.post('/deleteEmp', (req,res)=>{
     console.log("Employee deleted " + req.body._id + " " + req.body.EmpFName+ " " +req.body.EmpLName)
-    Emp.findByIdAndDelete(req.body._id).exec()
+    Empl.findByIdAndDelete(req.body._id).exec()
     return res.redirect('/delete.html');
     
 })

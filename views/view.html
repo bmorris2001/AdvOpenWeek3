@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id="container">
+    <h1>Enter your employee info.</h1>
+        <nav>
+            <a href="index.html">Enter Information</a>
+            <a href="view.html">Look at employees</a>
+        </nav>
+        <script>
+            fetch('/getData').then((emps)=>{
+                emps.json().then((theEmps)=>{
+                    for(let emp of theEmps.emp){
+                        let element = document.createElement('p')
+                        element.innerHTML = "First Name:  "+emp.EmpFName +"  Last Name:  "+ emp.EmpLName +"  Employee Dep.:  "+ emp.empDep +"  Employee Title:  "+ emp.empTitle +"  Employee Salary:$  "+ emp.empSal+"<br>"+"  Employee Start:  "+ emp.empStart+"<br>"
+                        document.getElementById('container').append(element)
+                        //add delete button 
+                        let deleteButton = document.createElement('button')
+                        deleteButton.innerText = 'Delete Entry'
+                        deleteButton.addEventListener('click', function deleteEmp(){
+                            location.reload()
+                            fetch('/deleteEmp',{
+                                method:'POST',
+                                headers:{
+                                    'Content-type':'application/json'
+                                },
+                                body:JSON.stringify({
+                                    _id:emp._id,
+                                    emp:emp.emp
+                                })
+                            })
+                        })
+                        element.appendChild(deleteButton)
+
+                        let updateButton = document.createElement('button')
+                        updateButton.innerText = 'Update Entry'
+                        updateButton.addEventListener('click', function updateEmpl(){
+                            location.reload()
+                            return res.redirect('/update.html');
+                        })
+                        element.appendChild(updateButton)
+                    }
+                })
+            })
+        </script>
+</body>
+</html>

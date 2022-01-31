@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <h1>Update your employee info.</h1>
+        <nav>
+            <a href="index.html">Enter Information</a>
+            <a href="view.html">Look at employees</a>
+        </nav>
+        <form action="/updateEmpEntry" method="post">
+            <span id="err" style="color: red;"></span>
+            <br>
+            <label for="uEmpFName">Enter Your Employee First Name.</label>
+            <br>
+            <input type="text" name="uEmpFName" id="EmpFName">
+            <br>
+            <label for="uEmpLName">Enter Your Employee Last Name.</label>
+            <br>
+            <input type="text" name="uEmpLName" id="EmpLName">
+            <br>
+            <label for="uempDep">Select Your Employee Departement.</label>
+            <br>
+            <select name="uempDep"><option value="Cashier">Cashier</option><option value="Tech Sales">Tech Sales<option value="Print Associate">Print Associate</option></option></select>
+            <br>
+            <label for="uempStart">Enter Your Employee Start Date.</label>
+            <br>
+            <input type="date" name="uempStart" id="EmpStart">
+            <br>
+            <label for="uempTitle">Enter Your Employee Job Title.</label>
+            <br>
+            <input type="text" name="uempTitle" id="EmpTitle">
+            <br>
+            <label for="uempSal">Enter Your Employee Salary.</label>
+            <br>
+            <input type="text" name="uempSal" id="EmpSal">
+            <br>
+            <button type="submit">Update Employee</button>
+        </form>
+    </div>
+</body>
+</html>

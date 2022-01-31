@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const app = express()
 const bodyparser = require('body-parser')
 const path = require('path')
+const port = process.env.port || 3000
 
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded({extended:true}))
@@ -55,6 +56,6 @@ app.post('/updateEmpEntry', (req,res)=>{
 
 
 app.use(express.static(__dirname+"/views"))
-app.listen(3000,()=>{
+app.listen(port,()=>{
     console.log('listening on port 3000')
 })

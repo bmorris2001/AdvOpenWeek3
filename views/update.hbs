@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
-</head>
+
 <body>
     <div id="container">
         <h1>Update your employee info.</h1>
@@ -19,11 +11,11 @@
             <br>
             <label for="firstName">Enter Your Employee First Name.</label>
             <br>
-            <input type="text" name="firstName" id="EmpFName">
+            <input type="text" name="firstName" id="EmpFName"value="{{firstName}}">
             <br>
             <label for="lastName">Enter Your Employee Last Name.</label>
             <br>
-            <input type="text" name="lastName" id="EmpLName">
+            <input type="text" name="lastName" id="EmpLName"value="{{lastName}}">
             <br>
             <label for="departement">Select Your Employee Departement.</label>
             <br>
@@ -31,18 +23,17 @@
             <br>
             <label for="startDate">Enter Your Employee Start Date.</label>
             <br>
-            <input type="date" name="startDate" id="EmpStart">
+            <input type="date" name="startDate" id="EmpStart"value="{{startDate}}">
             <br>
             <label for="jobTitle">Enter Your Employee Job Title.</label>
             <br>
-            <input type="text" name="jobTitle" id="EmpTitle">
+            <input type="text" name="jobTitle" id="EmpTitle"value="{{jobTitle}}">
             <br>
             <label for="salary">Enter Your Employee Salary.</label>
             <br>
-            <input type="text" name="salary" id="EmpSal">
+            <input type="text" name="salary" id="EmpSal"value="{{salary}}">
             <br>
             <button type="submit">Update Employee</button>
         </form>
     </div>
 </body>
-</html>

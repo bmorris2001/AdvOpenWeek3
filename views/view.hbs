@@ -18,7 +18,7 @@
                 emps.json().then((theEmps)=>{
                     for(let emp of theEmps.emp){
                         let element = document.createElement('p')
-                        element.innerHTML = "First Name:  "+emp.firstName +"  Last Name:  "+ emp.lastName +"  Employee Dep.:  "+ emp.departement +"  Employee Title:  "+ emp.jobTitle +"  Employee Salary:$  "+ emp.salary+"<br>"+"  Employee Start:  "+ emp.startDate+"<br>"
+                        element.innerHTML = "First Name:  "+emp.firstName+"<br>" +"  Last Name:  "+ emp.lastName+"<br>" +"  Employee Dep.:  "+ emp.departement+"<br>" +"  Employee Title:  "+ emp.jobTitle+"<br>" +"  Employee Salary:$  "+ emp.salary+"<br>"+"  Employee Start:  "+ emp.startDate+"<br>"
                         document.getElementById('container').append(element)
                         //add delete button 
                         let deleteButton = document.createElement('button')
@@ -44,7 +44,8 @@
                         
                         updateButton.addEventListener('click', function updateEmpl(){
                             location.reload()
-                            window.location.href="update.html"
+                            window.location.href="update/" +emp._id
+                            
                             
                         })
                         element.appendChild(updateButton)

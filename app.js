@@ -4,12 +4,24 @@ const app = express()
 const bodyparser = require('body-parser')
 const path = require('path')
 const port = process.env.PORT || 3000
+const exphbs = require("express-handlebars")
 
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded({extended:true}))
 app.use(express.json())
 
-
+app.engine("hbs",exphbs.engine({
+    defaultLayout:"main",
+    extname:".hbs",
+    helpers:{
+        getShortComment(comment){
+            if(comment.length < 60){
+                return comment
+            }
+            return comment.substring(0,60)+'...'
+        }
+    }
+}))
 
 mongoose.connect('mongodb://localhost:27017/Week3Lab',{
     useNewURLParser:true
@@ -30,22 +42,27 @@ app.post('/saveEmpEntry', (req,res)=>{
     //create new entry for Emp
     new Empl(req.body).save().then(()=>{
         console.log("Data Saved")
-        res.redirect("view.html")
+        res.render("view")
     })
+});
+
+
+app.get('/view',(req,res)=>{
+    
 })
 
  app.get('/getData', (req,res)=>{
      Empl.find().then((emp)=>{
          res.json({emp})
      })
- })
+ });
 
  app.post('/deleteEmp', (req,res)=>{
     console.log("Employee deleted " + req.body._id)
     Empl.findByIdAndDelete(req.body._id).exec()
     
     
-})
+});
 
 
 app.post('/updateEmpEntry', (req,res)=>{

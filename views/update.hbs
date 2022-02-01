@@ -2,11 +2,8 @@
 <body>
     <div id="container">
         <h1>Update your employee info.</h1>
-        <nav>
-            <a href="index.html">Enter Information</a>
-            <a href="view.html">Look at employees</a>
-        </nav>
-        <form action="/updateEmpEntry" method="post">
+
+        <form action="/update/{{_id}}" method="post">
             <span id="err" style="color: red;"></span>
             <br>
             <label for="firstName">Enter Your Employee First Name.</label>
@@ -23,7 +20,7 @@
             <br>
             <label for="startDate">Enter Your Employee Start Date.</label>
             <br>
-            <input type="date" name="startDate" id="EmpStart"value="{{startDate}}">
+            <input type="date" name="startDate" id="EmpStart"value="{{dateFormat startDate}}">
             <br>
             <label for="jobTitle">Enter Your Employee Job Title.</label>
             <br>

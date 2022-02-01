@@ -5,10 +5,10 @@ const bodyparser = require('body-parser')
 const path = require('path')
 const port = process.env.PORT || 3000
 const exphbs = require("express-handlebars")
+const moment = require('moment')
+const {ObjectId} = require('mongodb')
 
-app.use(bodyparser.json())
-app.use(bodyparser.urlencoded({extended:true}))
-app.use(express.json())
+
 
 app.engine("hbs",exphbs.engine({
     defaultLayout:"main",
@@ -19,9 +19,21 @@ app.engine("hbs",exphbs.engine({
                 return comment
             }
             return comment.substring(0,60)+'...'
+        },
+        dateFormat(startDate){
+                        
+            
+
+            return moment(startDate).format('YYYY-MM-DD').toString(); //04-05-2017
         }
     }
 }))
+
+app.set('view engine', 'hbs')
+
+app.use(bodyparser.json())
+app.use(bodyparser.urlencoded({extended:true}))
+app.use(express.json())
 
 mongoose.connect('mongodb://localhost:27017/Week3Lab',{
     useNewURLParser:true
@@ -46,10 +58,14 @@ app.post('/saveEmpEntry', (req,res)=>{
     })
 });
 
+app.get('/', (req, res) => {
+    res.render('index');
+});
 
-app.get('/view',(req,res)=>{
-    
-})
+app.get('/view', (req, res) => {
+    res.render('view');
+});
+
 
  app.get('/getData', (req,res)=>{
      Empl.find().then((emp)=>{
@@ -65,14 +81,26 @@ app.get('/view',(req,res)=>{
 });
 
 
-app.post('/updateEmpEntry', (req,res)=>{
-   
-    
-    Empl.updateOne(req.body.firstname, function(err, res) {
-        if (err) throw err;
-        console.log("1 document updated");
-        db.close();
-      });
+app.get('/update/:id', (req,res,next)=>{
+    console.log(req.params.id)
+    Empl.findById({_id: ObjectId(req.params.id)}, req.body, {new:true}, (err, docs)=>{
+        if(err){
+            console.log("Can't retrieve the data")
+            next(err)
+        }else{
+            res.render('update', docs)
+        }
+    })
+})
+
+app.post('/update/:id', (req, res, next)=> {
+    Empl.findByIdAndUpdate({_id: ObjectId(req.params.id)}, req.body, (err,docs)=>{
+        if(err){
+            console.log("Something went wrong.")
+        }else{
+            res.redirect('../view')
+        }
+    })
 })
 
 
